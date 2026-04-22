@@ -704,7 +704,7 @@
                 </a>
 
                 <!-- Card 2: Estética -->
-                <a href="#estetica" class="seg-card group block bg-white border border-brand-gold/20 rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card" style="transition-delay: 0.1s;">
+                <a href="#estetica" class="seg-card group block bg-white border border-brand-gold/20 rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card">
                     <div class="w-16 h-16 rounded-2xl bg-[#F5EDE4] flex items-center justify-center shadow-sm mb-6 text-brand-gold">
                         <i class="ph-fill ph-sparkle text-3xl group-hover:scale-110 transition-transform"></i>
                     </div>
@@ -716,7 +716,7 @@
                 </a>
 
                 <!-- Card 3: Clínico Geral -->
-                <a href="#clinico" class="seg-card group block bg-brand-dark text-white rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card" style="transition-delay: 0.2s;">
+                <a href="#clinico" class="seg-card group block bg-brand-dark text-white rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card">
                     <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 text-white">
                         <i class="ph-fill ph-tooth text-3xl group-hover:scale-110 transition-transform"></i>
                     </div>
@@ -851,7 +851,7 @@
             <!-- Grid de Resultados -->
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Caso 1: Harmonização -->
-                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card">
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card">
                     <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
                         <img src="assets/img/harmoniza-o.jpg" alt="Antes e Depois Harmonização Facial" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
                         <div class="absolute bottom-3 left-3 right-3 flex justify-between text-[9px] font-bold uppercase tracking-wider text-white">
@@ -866,7 +866,7 @@
                 </div>
 
                 <!-- Caso 2: Odontopediatria -->
-                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card" style="transition-delay: 0.1s;">
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card">
                     <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
                         <img src="assets/img/antes-e-depois-dente-crian-a-nova.webp" alt="Antes e Depois Odontopediatria" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
                         <div class="absolute top-3 left-3">
@@ -883,7 +883,7 @@
                 </div>
 
                 <!-- Caso 3: Prótese -->
-                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card" style="transition-delay: 0.2s;">
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card">
                     <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
                         <img src="assets/img/protese-dentaria.jpg" alt="Prótese Dentária OBE" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
                         <div class="absolute top-3 left-3">
@@ -1594,57 +1594,57 @@
                 { x: 0, opacity: 1, duration: 1.2, delay: 0.3, ease: 'power3.out' }
             );
 
-            // Fade Up Elements with Skew/Rotate
+            // Fade Up Elements — fast, immediate, no delays
             gsap.utils.toArray('.gsap-fade-up').forEach(element => {
                 gsap.fromTo(element,
-                    { y: 60, opacity: 0, skewY: 2, rotation: 1 },
+                    { y: 20, opacity: 0 },
                     {
                         scrollTrigger: {
                             trigger: element,
-                            start: 'top 92%',
-                            toggleActions: 'play none none reverse'
+                            start: 'top bottom-=50', // fires as soon as element enters viewport
+                            toggleActions: 'play none none none'
                         },
                         y: 0,
                         opacity: 1,
-                        skewY: 0,
-                        rotation: 0,
-                        duration: 1.2,
-                        ease: 'expo.out',
-                        force3D: true
-                    }
-                );
-            });
-
-            // Slide Right
-            gsap.utils.toArray('.gsap-slide-right').forEach(element => {
-                gsap.fromTo(element,
-                    { x: -40, opacity: 0 },
-                    {
-                        scrollTrigger: {
-                            trigger: element,
-                            start: 'top 90%',
-                        },
-                        x: 0,
-                        opacity: 1,
-                        duration: 0.8,
+                        duration: 0.4,
                         ease: 'power2.out',
                         force3D: true
                     }
                 );
             });
 
-            // Slide Left
-            gsap.utils.toArray('.gsap-slide-left').forEach(element => {
+            // Slide Right — fast
+            gsap.utils.toArray('.gsap-slide-right').forEach(element => {
                 gsap.fromTo(element,
-                    { x: 40, opacity: 0 },
+                    { x: -30, opacity: 0 },
                     {
                         scrollTrigger: {
                             trigger: element,
-                            start: 'top 90%',
+                            start: 'top bottom-=50',
+                            toggleActions: 'play none none none'
                         },
                         x: 0,
                         opacity: 1,
-                        duration: 0.8,
+                        duration: 0.4,
+                        ease: 'power2.out',
+                        force3D: true
+                    }
+                );
+            });
+
+            // Slide Left — fast
+            gsap.utils.toArray('.gsap-slide-left').forEach(element => {
+                gsap.fromTo(element,
+                    { x: 30, opacity: 0 },
+                    {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top bottom-=50',
+                            toggleActions: 'play none none none'
+                        },
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.4,
                         ease: 'power2.out',
                         force3D: true
                     }
