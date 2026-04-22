@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBE Odontologia Básica e Especializada</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Odontologia humanizada em Salvador. Especializada em atendimento para crianças e pacientes autistas, estética do sorriso, harmonização facial e tratamentos completos.">
+    <meta name="keywords" content="odontologia, dentista, salvador, itaigara, autismo, odontopediatria, harmonização facial, lentes em resina">
+    <meta property="og:title" content="OBE Odontologia Básica e Especializada">
+    <meta property="og:description" content="Clínica odontológica humanizada e especializada em estética e atendimento neurodivergente em Salvador.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon SVG (Elite) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
+    
+    <!-- LCP Preload -->
+    <link rel="preload" href="assets/img/hero-maior.webp" as="image" fetchpriority="high">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Fonts: Playfair Display (Serif) & Lato (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Icons (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C4A265',
+                            rose: '#D2A1A1', /* Rosé suave */
+                            light: '#F5EDE4', /* Bege claro */
+                            dark: '#2A2522', /* Marrom muito escuro */
+                            muted: '#8D7B68'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: #F5EDE4;
+            color: #2A2522;
+            font-display: swap;
+        }
+
+        /* 💎 Ken Burns Effect */
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .ken-burns {
+            animation: kenburns 20s ease infinite alternate;
+        }
+
+        /* 💎 Shimmer Effect */
+        .shimmer-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: 0.6s;
+            opacity: 0;
+        }
+        .shimmer-card:hover::after {
+            opacity: 1;
+            left: 100%;
+            top: 100%;
+        }
+
+        /* 💎 Authority Badge TEA */
+        .tea-badge {
+            background: linear-gradient(135deg, #C4A265 0%, #A68343 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(196, 162, 101, 0.2);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 💎 Typography Polish */
+        @media (max-width: 768px) {
+            h1.font-serif, h2.font-serif {
+                font-weight: 600 !important; /* Slightly lighter on mobile for elegance */
+                letter-spacing: -0.02em;
+            }
+        }
+        
+        /* Fixed Navbar */
+        .glass-nav {
+            background-color: #F5EDE4;
+            border-bottom: 1px solid rgba(196, 162, 101, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .nav-inner {
+            height: 70px;
+        }
+        @media (min-width: 768px) {
+            .nav-inner { height: 80px; }
+        }
+
+        /* Nav Link Active State */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: #C4A265;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #C4A265;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #C4A265 0%, #A68343 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #C4A265 0%, #A68343 100%);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #A68343 0%, #C4A265 100%);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(196, 162, 101, 0.3);
+        }
+        
+        .btn-gold:hover::before {
+            opacity: 1;
+        }
+
+        .clip-path-arch {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+        }
+
+        .image-overlay {
+            position: relative;
+        }
+        .image-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(42, 37, 34, 0.8) 0%, rgba(42, 37, 34, 0) 60%);
+        }
+
+        /* Float WhatsApp */
+        .float-wpp {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        @media (min-width: 768px) {
+            .float-wpp {
+                bottom: 30px;
+                right: 30px;
+                width: 60px;
+                height: 60px;
+                font-size: 32px;
+            }
+        }
+        .float-wpp:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Segmentation Cards Hover */
+        .seg-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(196, 162, 101, 0.1);
+        }
+        .seg-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(196, 162, 101, 0.5);
+            box-shadow: 0 20px 40px rgba(42, 37, 34, 0.08);
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #F5EDE4;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(196, 162, 101, 0.2);
+            border-top-color: #C4A265;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Animations for Mobile Hero */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        @keyframes float-delay-1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(10px, -20px); }
+        }
+        @keyframes float-delay-2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, 15px); }
+        }
+        .animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
+        .animate-float-delay-1 { animation: float-delay-1 5s ease-in-out infinite; }
+        .animate-float-delay-2 { animation: float-delay-2 6s ease-in-out infinite; }
+
+        @media (max-width: 768px) {
+            .procedure-card:nth-child(n+4) {
+                display: none;
+            }
+            .procedure-card.show-all {
+                display: block !important;
+            }
+        }
+
+
+        /* Performance Optimizations */
+        .gsap-fade-up, .gsap-slide-right, .gsap-slide-left, .gsap-hero-text > *, .gsap-hero-img {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        /* 💎 Luxury Design System Additions */
+        
+        /* Film Grain Texture */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Editorial Marquee */
+        .marquee-outer {
+            width: 110%;
+            margin-left: -5%;
+            margin-top: -15px;
+            margin-bottom: -15px;
+            overflow: hidden;
+            position: relative;
+            background: #2A2522;
+            padding: 24px 0;
+            border-top: 1px solid rgba(196, 162, 101, 0.2);
+            border-bottom: 1px solid rgba(196, 162, 101, 0.2);
+            transform: rotate(-1.5deg) scale(1.02);
+            z-index: 30;
+        }
+        .marquee-strip {
+            display: flex;
+            width: max-content;
+            white-space: nowrap;
+            will-change: transform;
+        }
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            gap: 40px;
+            padding-right: 40px;
+            animation: marquee-infinite 30s linear infinite;
+        }
+        .marquee-item {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #C4A265;
+            font-size: 14px;
+        }
+        .marquee-bullet {
+            width: 6px;
+            height: 6px;
+            background: #C4A265;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        @keyframes marquee-infinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Masked Reveal */
+        .mask-wrap {
+            overflow: hidden;
+            display: block;
+        }
+        .mask-text {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mask-text.revealed {
+            transform: translateY(0);
+        }
+
+        /* Progress Widget */
+        .progress-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 88px;
+            width: 56px;
+            height: 56px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(245, 237, 228, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(196, 162, 101, 0.2);
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(42, 37, 34, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (min-width: 768px) {
+            .progress-widget {
+                bottom: 30px;
+                right: 106px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+        .progress-widget.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.1s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            stroke: #C4A265;
+        }
+        .progress-widget:hover .progress-icon {
+            transform: translateY(-3px);
+        }
+        .progress-icon {
+            position: absolute;
+            color: #C4A265;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+
+    </style>
+</head>
+<body class="font-sans antialiased bg-[#F5EDE4]">
+    
+    <!-- 💎 Luxury Grain Texture -->
+    <div class="film-grain"></div>
+
+    <!-- 💎 Progress Widget -->
+    <div id="scroll-progress" class="progress-widget" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg class="progress-ring" viewBox="0 0 60 60" style="width: 100%; height: 100%;">
+            <circle class="progress-ring-bg" stroke="rgba(196, 162, 101, 0.1)" stroke-width="2" fill="transparent" r="28" cx="30" cy="30"/>
+            <circle id="progress-circle" class="progress-ring-circle" stroke="#C4A265" stroke-width="2" fill="transparent" r="28" cx="30" cy="30"/>
+        </svg>
+        <i class="ph-bold ph-arrow-up progress-icon"></i>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="flex flex-col items-center gap-4">
+            <div class="loader-ring"></div>
+            <p class="font-serif italic text-brand-gold text-lg">Preparando sua experiência...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-[100] glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center nav-inner">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- Como não temos a logo exata em SVG, faremos uma representação elegante com tipografia baseada no print -->
+                    <div class="flex items-center gap-3">
+                        <i class="ph ph-tooth text-3xl text-brand-rose"></i>
+                        <div class="flex flex-col">
+                            <span class="font-serif text-2xl font-bold tracking-widest text-brand-dark leading-none">OBE</span>
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-brand-muted mt-1">Odontologia Básica e Especializada</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#autismo" class="nav-link text-[11px] uppercase tracking-widest text-brand-dark hover:text-brand-gold transition-colors font-bold whitespace-nowrap">Odontopediatria</a>
+                    <a href="#estetica" class="nav-link text-[11px] uppercase tracking-widest text-brand-dark hover:text-brand-gold transition-colors font-bold whitespace-nowrap">Estética</a>
+                    <a href="#resultados" class="nav-link text-[11px] uppercase tracking-widest text-brand-dark hover:text-brand-gold transition-colors font-bold whitespace-nowrap">Resultados</a>
+                    <a href="#equipe" class="nav-link text-[11px] uppercase tracking-widest text-brand-dark hover:text-brand-gold transition-colors font-bold whitespace-nowrap">Corpo Clínico</a>
+                    <a href="#clinico" class="nav-link text-[11px] uppercase tracking-widest text-brand-dark hover:text-brand-gold transition-colors font-bold whitespace-nowrap">Tratamentos</a>
+                    
+                    <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="btn-gold px-7 py-3.5 rounded-full text-[11px] uppercase tracking-widest font-bold shadow-lg ml-2 whitespace-nowrap">
+                        Agendar Consulta
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-brand-dark" id="menu-toggle">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Mobile Menu Panel (Moved outside for better z-index management) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#F5EDE4] z-[999] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center space-y-12 p-10">
+        <button class="absolute top-8 right-8 text-brand-dark" id="menu-close">
+            <i class="ph ph-x text-4xl"></i>
+        </button>
+        <div class="flex flex-col items-center space-y-8">
+            <a href="#autismo" class="nav-link text-2xl uppercase tracking-widest text-brand-dark font-bold mobile-link">Odontopediatria</a>
+            <a href="#estetica" class="nav-link text-2xl uppercase tracking-widest text-brand-dark font-bold mobile-link">Estética</a>
+            <a href="#resultados" class="nav-link text-2xl uppercase tracking-widest text-brand-dark font-bold mobile-link">Resultados</a>
+            <a href="#equipe" class="nav-link text-2xl uppercase tracking-widest text-brand-dark font-bold mobile-link">Corpo Clínico</a>
+            <a href="#clinico" class="nav-link text-2xl uppercase tracking-widest text-brand-dark font-bold mobile-link">Tratamentos</a>
+        </div>
+        <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="btn-gold px-10 py-5 rounded-full text-xl uppercase tracking-wider font-bold shadow-2xl w-full max-w-xs text-center">
+            Agendar Consulta
+        </a>
+    </div>
+
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[95vh] flex items-center pt-24 overflow-hidden">
+        <!-- Background Decorativo -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-rose opacity-10 rounded-l-full blur-3xl transform translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand-gold opacity-10 rounded-tr-full blur-3xl transform -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Mobile Hero Background Effects (Atrás do Card) -->
+            <div class="md:hidden absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div class="absolute inset-0 bg-gradient-radial from-brand-gold/15 to-transparent blur-3xl opacity-50 scale-150"></div>
+                
+                <div class="absolute top-[10%] right-[15%] text-brand-rose text-5xl animate-float-delay-1 opacity-20">
+                    <i class="ph-fill ph-heart"></i>
+                </div>
+                <div class="absolute bottom-[20%] left-[10%] text-brand-gold text-4xl animate-float-delay-2 opacity-20">
+                    <i class="ph-fill ph-tooth-logo"></i>
+                </div>
+                <div class="absolute top-[45%] right-[25%] text-brand-gold/20 text-6xl animate-pulse blur-[3px]">
+                    <i class="ph-fill ph-tooth-logo"></i>
+                </div>
+            </div>
+
+            <!-- Foreground Effects (Na frente do Card) -->
+            <div class="md:hidden absolute inset-0 overflow-hidden pointer-events-none z-20">
+                <div class="absolute top-[30%] left-[2%] text-brand-rose text-3xl animate-pulse opacity-40">
+                    <i class="ph-fill ph-sparkle"></i>
+                </div>
+                <div class="absolute top-[65%] right-[2%] text-brand-gold text-2xl animate-float-slow opacity-40">
+                    <i class="ph-fill ph-plus-circle"></i>
+                </div>
+                <div class="absolute bottom-[15%] right-[15%] text-brand-rose text-4xl animate-float-delay-1 opacity-50">
+                    <i class="ph-fill ph-sparkle"></i>
+                </div>
+                <div class="absolute top-[55%] left-[5%] text-brand-gold text-3xl animate-float-delay-2 opacity-30">
+                    <i class="ph-fill ph-tooth-logo"></i>
+                </div>
+            </div>
+
+            <div class="gsap-hero-text relative z-10 w-full">
+
+                <!-- Mobile Card Wrap -->
+                <div class="md:hidden bg-white/40 backdrop-blur-xl border border-white/40 px-8 py-20 rounded-[64px] shadow-2xl text-center mb-12 min-h-[550px] flex flex-col justify-center">
+                    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-brand-gold/30 bg-white/60 backdrop-blur-sm mb-10 mx-auto">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-gold animate-pulse"></span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-muted">Clínica Humanizada no Itaigara</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-[42px] font-bold text-brand-dark leading-[1.1] mb-8 mask-wrap">
+                        <span class="mask-text">Odontologia <br>
+                        <span class="gold-gradient-text italic font-normal">humanizada</span><br>
+                        para toda a família.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-brand-muted mb-8 leading-relaxed max-w-[280px] mx-auto">
+                        Cuidado especial para <strong>crianças, pacientes autistas</strong> e tratamentos de <strong>alta estética</strong>. Sem medo.
+                    </p>
+
+                    <!-- Google Reviews Badge -->
+                    <div class="flex items-center justify-center gap-3 mb-10 bg-white/40 backdrop-blur-md py-3 px-5 rounded-2xl border border-white/50 shadow-sm w-fit mx-auto">
+                        <div class="flex text-[#F9A826] text-sm">
+                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brand-dark">5.0 no Google (80+ avaliações)</span>
+                    </div>
+                    
+                    <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="btn-gold px-8 py-5 rounded-full text-center uppercase tracking-widest font-bold shadow-xl flex items-center justify-center gap-2 w-full max-w-[280px] mx-auto">
+                        <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                        Agendar Consulta
+                    </a>
+                </div>
+
+
+                <!-- Desktop Version (Hidden on Mobile) -->
+                <div class="hidden md:block">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-gold/30 bg-white/50 backdrop-blur-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                        <span class="text-xs uppercase tracking-widest font-bold text-brand-muted">Clínica Humanizada no Itaigara</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-brand-dark leading-[1.1] mb-6 mask-wrap">
+                        <span class="mask-text">Odontologia <br>
+                        <span class="gold-gradient-text italic font-normal">humanizada</span><br>
+                        para toda a família.</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-brand-muted mb-8 max-w-lg leading-relaxed">
+                        Com especial cuidado para <strong>crianças, pacientes autistas</strong> e tratamentos de <strong>alta estética facial e dental</strong>. Uma experiência odontológica sem medo.
+                    </p>
+
+                    <!-- Google Reviews Badge (Desktop) -->
+                    <div class="flex items-center gap-3 mb-10 bg-white/50 backdrop-blur-md py-3 px-5 rounded-2xl border border-white/50 shadow-sm w-fit">
+                        <div class="flex text-[#F9A826] text-lg">
+                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-dark">Nota 5.0 no Google (+80 avaliações)</span>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="btn-gold px-8 py-4 rounded-full text-center uppercase tracking-wider font-bold shadow-xl flex items-center justify-center gap-2">
+                            <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                            Agendar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Imagem Composta Hero (Desktop) -->
+            <div class="relative gsap-hero-img h-[600px] w-full hidden md:block">
+                <!-- Imagem Principal (Atendimento humanizado) -->
+                <div class="absolute top-0 right-0 w-4/5 h-[500px] rounded-[40px] overflow-hidden shadow-2xl z-10">
+                    <img src="assets/img/hero-maior.webp" alt="Atendimento Odontológico OBE" class="w-full h-full object-cover ken-burns" fetchpriority="high">
+                </div>
+                <!-- Imagem Secundária (Detalhe Estético / Sorriso) -->
+                <div class="absolute bottom-0 left-0 w-2/3 h-[300px] rounded-[40px] border-8 border-[#F5EDE4] overflow-hidden shadow-xl z-20">
+                    <img src="assets/img/hero-menor.webp" alt="Detalhe Clínica OBE" class="w-full h-full object-cover ken-burns" loading="lazy">
+                </div>
+                <!-- Badge Flutuante -->
+                <div class="absolute top-1/2 left-[-20px] bg-white p-4 rounded-2xl shadow-xl z-30 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                    <div class="w-12 h-12 rounded-full bg-brand-rose/20 flex items-center justify-center text-brand-rose text-2xl">
+                        <i class="ph-fill ph-heart"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-brand-dark leading-tight">Especialistas<br>em Acolher</p>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+
+            
+        </div>
+    </section>
+
+    <!-- 💎 Editorial Authority Marquee -->
+    <div class="marquee-outer">
+        <div class="marquee-strip">
+            <div class="marquee-content">
+                <span class="marquee-item">Estética do Sorriso</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Atendimento Humanizado</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Referência em Autismo</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Odontopediatria de Elite</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Lentes em Resina</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Harmonização Facial</span> <span class="marquee-bullet"></span>
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item">Estética do Sorriso</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Atendimento Humanizado</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Referência em Autismo</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Odontopediatria de Elite</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Lentes em Resina</span> <span class="marquee-bullet"></span>
+                <span class="marquee-item">Harmonização Facial</span> <span class="marquee-bullet"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SEGMENTAÇÃO IMEDIATA (O Cérebro do Site) -->
+    <section class="py-20 bg-white relative z-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4 mask-wrap">
+                    <span class="mask-text">Como podemos ajudar você hoje?</span>
+                </h2>
+                <p class="text-brand-muted">Selecione a área de atendimento para encontrar o tratamento ideal.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: Crianças & Autismo -->
+                <a href="#autismo" class="seg-card group block bg-[#F5EDE4] rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card">
+                    <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-md mb-6 text-brand-rose">
+                        <i class="ph-fill ph-baby text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-brand-dark mb-3">Para Crianças & <br>Pacientes TEA</h3>
+                    <p class="text-brand-muted text-sm mb-8">Odontopediatria especializada, ambiente lúdico e opções com sedação consciente.</p>
+                    <div class="flex items-center text-brand-gold font-bold text-sm tracking-wider uppercase">
+                        Conhecer o espaço <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2: Estética -->
+                <a href="#estetica" class="seg-card group block bg-white border border-brand-gold/20 rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-[#F5EDE4] flex items-center justify-center shadow-sm mb-6 text-brand-gold">
+                        <i class="ph-fill ph-sparkle text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-brand-dark mb-3">Estética <br>Facial e Dental</h3>
+                    <p class="text-brand-muted text-sm mb-8">Harmonização facial, harmonização glútea, lentes em cerâmica e facetas em resina.</p>
+                    <div class="flex items-center text-brand-gold font-bold text-sm tracking-wider uppercase">
+                        Ver tratamentos <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3: Clínico Geral -->
+                <a href="#clinico" class="seg-card group block bg-brand-dark text-white rounded-[32px] p-8 relative overflow-hidden gsap-fade-up shimmer-card" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 text-white">
+                        <i class="ph-fill ph-tooth text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-white mb-3">Tratamentos <br>Clínicos</h3>
+                    <p class="text-white/70 text-sm mb-8">Implantes, Endodontia (canal), Periodontia e reabilitação oral completa.</p>
+                    <div class="flex items-center text-brand-gold font-bold text-sm tracking-wider uppercase">
+                        Ver especialidades <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DIFERENCIAL 1: AUTISMO E ODONTOPEDIATRIA -->
+    <section id="autismo" class="py-24 bg-[#F5EDE4] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Imagem -->
+                <div class="relative gsap-slide-right">
+                    <div class="aspect-square rounded-[40px] overflow-hidden shadow-2xl relative image-overlay">
+                        <img src="assets/img/atendimento-especializado.webp" alt="Atendimento Especializado OBE" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <!-- Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-xl w-64">
+                        <i class="ph-fill ph-puzzle-piece text-4xl text-brand-rose mb-2"></i>
+                        <h4 class="font-bold text-brand-dark text-lg leading-tight">Um amor chamado Autismo</h4>
+                    </div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="gsap-slide-left">
+                    <div class="text-brand-rose font-bold tracking-widest uppercase text-sm mb-4">Atendimento Especializado</div>
+                    
+                    <!-- Authority Badge TEA -->
+                    <div class="tea-badge mb-6">
+                        <i class="ph-fill ph-puzzle-piece text-xl"></i>
+                        Referência em Autismo (TEA)
+                    </div>
+
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+                        Seu filho em <span class="italic text-brand-gold">mãos seguras</span> e acolhedoras.
+                    </h2>
+                    <p class="text-brand-muted text-lg mb-6 leading-relaxed">
+                        Sabemos que a ida ao dentista pode gerar ansiedade. Por isso, a OBE é referência em <strong>Odontopediatria e atendimento a crianças com TEA (Transtorno do Espectro Autista)</strong>.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-brand-rose/20 flex items-center justify-center text-brand-rose flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <p class="text-brand-dark font-medium">Abordagem lúdica e respeitosa com o tempo da criança.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-brand-rose/20 flex items-center justify-center text-brand-rose flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <p class="text-brand-dark font-medium">Habilitação em sedação com Óxido Nitroso para total conforto.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-brand-rose/20 flex items-center justify-center text-brand-rose flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <p class="text-brand-dark font-medium">Liderança pela Dra. Camila Magalhães, especialista no assunto.</p>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/557196593529?text=Olá, gostaria de saber mais sobre o atendimento odontopediátrico/TEA." target="_blank" class="inline-flex items-center gap-2 text-brand-dark font-bold hover:text-brand-rose transition-colors uppercase tracking-wider text-sm border-b-2 border-brand-rose pb-1">
+                        Falar com Especialista Infantil <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DIFERENCIAL 2: ESTÉTICA PREMIUM -->
+    <section id="estetica" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <!-- Conteúdo -->
+                <div class="gsap-fade-up order-2 md:order-1">
+                    <div class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4">Beleza & Autoestima</div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+                        Eleve sua <span class="italic text-brand-rose">beleza natural</span> com excelência.
+                    </h2>
+                    <p class="text-brand-muted text-lg mb-8 leading-relaxed">
+                        A estética na OBE vai além dos dentes. Cuidamos da moldura do seu rosto e do seu corpo com técnicas avançadas, entregando resultados sofisticados e naturais.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-10">
+                        <div class="p-6 bg-[#F5EDE4] rounded-2xl">
+                            <i class="ph-fill ph-magic-wand text-3xl text-brand-gold mb-4"></i>
+                            <h4 class="font-bold text-brand-dark mb-2">Harmonização Facial</h4>
+                            <p class="text-sm text-brand-muted">Botox, preenchedores e bioestimuladores de colágeno.</p>
+                        </div>
+                        <div class="p-6 bg-[#F5EDE4] rounded-2xl">
+                            <i class="ph-fill ph-sparkle text-3xl text-brand-gold mb-4"></i>
+                            <h4 class="font-bold text-brand-dark mb-2">Lentes de Contato</h4>
+                            <p class="text-sm text-brand-muted">Lentes em cerâmica e facetas em resina de alta durabilidade.</p>
+                        </div>
+                        <div class="p-6 bg-[#F5EDE4] rounded-2xl">
+                            <i class="ph-fill ph-barbell text-3xl text-brand-gold mb-4"></i>
+                            <h4 class="font-bold text-brand-dark mb-2">Harmonização Glútea</h4>
+                            <p class="text-sm text-brand-muted">Tratamento de celulite e flacidez com Sculptra/Radiesse.</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/557196593529?text=Olá, gostaria de agendar uma avaliação estética." target="_blank" class="btn-gold px-8 py-4 rounded-full text-center uppercase tracking-wider font-bold shadow-xl inline-block">
+                        Agendar Avaliação Estética
+                    </a>
+                </div>
+
+                <!-- Imagem -->
+                <div class="relative gsap-fade-up order-1 md:order-2">
+                    <div class="aspect-[4/5] rounded-t-full rounded-b-[40px] overflow-hidden shadow-2xl">
+                        <img src="assets/img/beleza-autoestima.webp" alt="Beleza e Autoestima OBE" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTADOS / ANTES E DEPOIS -->
+    <section id="resultados" class="py-24 bg-[#F5EDE4] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Portfólio</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6">Vidas Transformadas</h2>
+                <p class="text-brand-muted max-w-2xl mx-auto text-lg">Resultados reais da nossa equipe em harmonização facial, estética dental e reabilitação oral. Deslize para ver a transformação.</p>
+            </div>
+
+            <!-- Grid de Resultados -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Caso 1: Harmonização -->
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                        <img src="assets/img/harmoniza-o.jpg" alt="Antes e Depois Harmonização Facial" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
+                        <div class="absolute bottom-3 left-3 right-3 flex justify-between text-[9px] font-bold uppercase tracking-wider text-white">
+                            <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">Antes</span>
+                            <span class="bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark">Depois</span>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <h4 class="font-bold text-brand-dark text-lg mb-1">Harmonização Facial</h4>
+                        <p class="text-sm text-brand-muted">Resultados naturais e sofisticados.</p>
+                    </div>
+                </div>
+
+                <!-- Caso 2: Odontopediatria -->
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card" style="transition-delay: 0.1s;">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                        <img src="assets/img/antes-e-depois-dente-crian-a-nova.webp" alt="Antes e Depois Odontopediatria" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-white">Antes</span>
+                        </div>
+                        <div class="absolute bottom-3 right-3">
+                            <span class="bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark text-[9px] font-bold uppercase tracking-wider">Depois</span>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <h4 class="font-bold text-brand-dark text-lg mb-1">Reabilitação Infantil</h4>
+                        <p class="text-sm text-brand-muted">Odontopediatria estética e funcional.</p>
+                    </div>
+                </div>
+
+                <!-- Caso 3: Prótese -->
+                <div class="gsap-fade-up group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-all shimmer-card" style="transition-delay: 0.2s;">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                        <img src="assets/img/protese-dentaria.jpg" alt="Prótese Dentária OBE" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-brand-rose px-3 py-1 rounded-full shadow-md text-white text-[9px] font-bold uppercase tracking-wider">Alta Estética</span>
+                        </div>
+                        <div class="absolute bottom-3 right-3">
+                            <span class="bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark text-[9px] font-bold uppercase tracking-wider">Depois</span>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <h4 class="font-bold text-brand-dark text-lg mb-1">Prótese Dentária</h4>
+                        <p class="text-sm text-brand-muted">Reabilitação oral completa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="https://www.instagram.com/obe.odontologia" target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold hover:text-brand-dark transition-colors uppercase tracking-wider text-sm border-b-2 border-brand-gold pb-1">
+                    <i class="ph-fill ph-instagram-logo text-xl"></i> Ver galeria completa no Instagram
+                </a>
+            </div>
+
+            <!-- Depoimentos (Google Reviews) -->
+            <div class="mt-32">
+                <div class="text-center mb-16 gsap-fade-up">
+                    <div class="inline-flex items-center justify-center gap-2 mb-4 bg-white px-4 py-2 rounded-full shadow-sm border border-brand-gold/10">
+                        <i class="ph-fill ph-google-logo text-xl" style="color: #4285F4;"></i>
+                        <div class="flex items-center gap-1">
+                            <i class="ph-fill ph-star text-[#FBBC05] text-sm"></i>
+                            <i class="ph-fill ph-star text-[#FBBC05] text-sm"></i>
+                            <i class="ph-fill ph-star text-[#FBBC05] text-sm"></i>
+                            <i class="ph-fill ph-star text-[#FBBC05] text-sm"></i>
+                            <i class="ph-fill ph-star text-[#FBBC05] text-sm"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-dark ml-1">5.0</span>
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4">O que dizem sobre nós</h3>
+                    <p class="text-brand-muted max-w-2xl mx-auto text-lg">Avaliações reais de pacientes que confiaram seus sorrisos e suas famílias à OBE.</p>
+                </div>
+
+                <div class="relative max-w-6xl mx-auto px-0 md:px-4 gsap-fade-up">
+                    <!-- Carousel Container -->
+                    <div class="overflow-hidden pb-8" id="reviews-container">
+                        <div class="flex transition-transform duration-500 ease-in-out" id="reviews-track">
+                            
+                            <!-- Card 1 (Josba) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Atendimento de excelência. As dentistas Camila Magalhães e Louise Câmara são muito simpáticas, atenciosas e competentes... Referência em HOF e na Odontopediatria inclusive neurodivergentes (portadoras de TDAH, autismo e dislexia). Recomendo!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">J</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Josba Josba</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Odontopediatria/TEA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 (Fernando) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Minha experiência com a Dra. Louise foi excelente. Seu cuidado e atenção fizeram toda a diferença, tornando a consulta muito mais tranquila. Sou imensamente grato e saio do consultório com um sorriso ainda maior!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">F</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Fernando Monteiro</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Harmonização</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3 (Lais) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Minha experiência foi a Melhor de todas. Doutora Camila é uma pessoa maravilhosa... Layla começou o tratamento Dentário com 1 ano e 8 meses e hoje com 5 Anos usando o aparelho, equipe dela sempre dando atenção. Surreal!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">L</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Lais Sodre</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Odontopediatria</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 4 (Malena) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"A melhor clínica odontológica sem dúvida nenhuma. Meu filho autista é atendido por doutora Camila desde muito novo. O tato que eles possuem com os pacientes é surreal. Podem ir sem medo. Recomendo de olhos fechados!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">M</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Malena Araujo</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Odontopediatria/TEA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 5 (Livia) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Excelente atendimento, profissionais comprometidas e dedicadas. Fiquei muito satisfeita com meu resultado e recomendo fortemente! Agradecimento especial à Dra. Louise que acompanhou o tratamento do início ao fim!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">L</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Livia Maris</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Estética Dental</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 6 (Lennon) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Fiz procedimento estético. Adorei o resultado. Todos perguntam o que eu estou fazendo para parecer mais jovem, mas quem sabe é a Dra. Louise."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">L</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Lennon Souza</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Estética Facial</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 7 (Kátia) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Atenção e cuidado de toda a equipe, desde a recepção até as dentistas. Atendimento impecável!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">K</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Kátia Galvão</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Atendimento</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 8 (Danilo) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Clínica com ambiente muito agradável, excelentes profissionais e atendimento de qualidade. Recomendo!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">D</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Danilo Silveira</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Geral</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 9 (Vânia) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Dra. Camila é simplesmente HUMANA, acho que isso faz dela a melhor, atender criança com diagnóstico não é fácil e ela faz esse momento se tornar mais tranquilo."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">V</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Vânia Rocha</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Odontopediatria</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 10 (Yuri) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Me senti muito acolhido. Dra Camila e Dra Louise são realmente excepcionais. Acolhedoras, profissionais, além de explicar o tratamento detalhado para o paciente."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">Y</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Yuri Carvalho</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Atendimento</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 11 (Mauricio) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Minha experiência com a OBE é ótima. A clínica é muito boa, aconchegante, bem equipada e tem instalações de primeira. Profissionais de alta competência."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">M</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Mauricio</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Geral</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 12 (Otávio) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Clínica muito bem montada com infra estrutura moderna e atendimento excelente, em especial para crianças. Localização excelente com estacionamento fácil."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">O</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Otávio Alexandre</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Odontopediatria</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 13 (George) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Ambiente acolhedor, bem cuidado e confortável. Profissionais super atenciosas. Atendimento extremamente humanizado e cuidadoso. Clínica altamente recomendada."</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">G</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">George Afonso</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Geral</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 14 (Larissa) -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                                <div class="bg-white p-10 rounded-[32px] shadow-sm border border-[#F2EDE4] relative h-full flex flex-col justify-between group hover:shadow-xl hover:border-brand-gold/20 transition-all duration-300">
+                                    <div class="absolute top-10 right-10 text-5xl text-[#E8E1D9] font-serif leading-none">"</div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-6 text-[#F9A826]">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                        </div>
+                                        <p class="text-brand-dark/70 italic leading-relaxed text-[15px] mb-10">"Clínica extremamente organizada e zelosa com os pacientes. Profissionais excelentes, humanas e de fato preocupadas com o bem estar do paciente. Indico muito!"</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-[#F5EDE4] flex items-center justify-center text-[#8D7B68] font-bold text-lg font-serif">L</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark text-[15px]">Larissa Sales</h4>
+                                            <p class="text-[12px] text-brand-muted">Paciente • Geral</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls & Main Google Button -->
+                    <div class="flex flex-col items-center gap-10 mt-6">
+                        
+                        <!-- Arrows -->
+                        <div class="flex items-center justify-center gap-6">
+                            <button onclick="moveReview(-1)" class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#8D7B68] hover:text-brand-dark transition-colors">
+                                <i class="ph-bold ph-arrow-left text-lg"></i>
+                            </button>
+                            <div class="text-[#8D7B68] text-[13px] font-bold tracking-widest font-serif"><span id="review-current">1</span> / 14</div>
+                            <button onclick="moveReview(1)" class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#8D7B68] hover:text-brand-dark transition-colors">
+                                <i class="ph-bold ph-arrow-right text-lg"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Pill Button -->
+                        <a href="https://www.google.com/maps/place/OBE+Odontologia+B%C3%A1sica+e+Especializada/@-12.9964347,-38.4653788,17z/data=!4m8!3m7!1s0x7161bc262c752bb:0xb50ebc46fdc34abe!8m2!3d-12.9964347!4d-38.4653788!9m1!1b1!16s%2Fg%2F11m75qmxt2" target="_blank" class="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-[#EAE8E3] hover:bg-[#DEDCD7] transition-colors shadow-sm">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-4 h-4">
+                            <span class="text-[13px] font-bold text-brand-dark uppercase tracking-wider">Ver todas as avaliações no Google</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPO CLÍNICO: PODER FEMININO -->
+    <section id="equipe" class="py-24 bg-brand-dark text-white relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-fade-up">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Nossa Força</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">Equipe Multidisciplinar</h2>
+                <p class="text-white/70 max-w-2xl mx-auto text-lg">Um time 100% feminino, liderado por especialistas apaixonadas pelo que fazem. Combinamos conhecimento técnico avançado (PhDs e especialistas) com sensibilidade única.</p>
+            </div>
+
+            <!-- Fundadoras em Destaque -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Dra Louise -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col sm:flex-row items-center gap-8 gsap-fade-up">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-brand-gold flex-shrink-0">
+                        <img src="assets/img/team/louise camar.webp" alt="Dra. Louise Câmara" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-gold mb-1">Dra. Louise Câmara</h3>
+                        <p class="text-sm uppercase tracking-wider text-white/60 mb-3">Fundadora | CRO BA 16810</p>
+                        <p class="text-white/80 mb-4">Harmonização Facial, Ortodontia e Implante.</p>
+                        <a href="https://www.instagram.com/dralouisecamara" target="_blank" class="inline-flex items-center gap-2 text-sm text-brand-rose hover:text-white transition-colors">
+                            <i class="ph-fill ph-instagram-logo text-lg"></i> @dralouisecamara
+                        </a>
+                    </div>
+                </div>
+                <!-- Dra Camila -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col sm:flex-row items-center gap-8 gsap-fade-up" style="transition-delay: 0.1s;">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-brand-rose flex-shrink-0">
+                        <img src="assets/img/team/vamilamagalhaes.webp" alt="Dra. Camila Magalhães" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-rose mb-1">Dra. Camila Magalhães</h3>
+                        <p class="text-sm uppercase tracking-wider text-white/60 mb-3">Fundadora | CRO BA 9608</p>
+                        <p class="text-white/80 mb-4">Odontopediatria, Ortodontia Infantil e PCD (foco autistas).</p>
+                        <a href="https://www.instagram.com/dramilamagalhaes" target="_blank" class="inline-flex items-center gap-2 text-sm text-brand-gold hover:text-white transition-colors">
+                            <i class="ph-fill ph-instagram-logo text-lg"></i> @dramilamagalhaes
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Especialistas -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 gsap-fade-up" style="transition-delay: 0.2s;">
+                <!-- Especialista 1: Elisabete -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/dra.elisabetejuiz/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/elisabete.webp" alt="Dra. Elisabete Juiz" class="w-full h-full object-cover transition-all group-hover:scale-110" loading="lazy">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Elisabete Juiz</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Odontopediatra c/ Óxido Nitroso</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO BA 4788</p>
+                </div>
+
+                <!-- Especialista 2: Larissa -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/larissasaleshof/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/larissasales.webp" alt="Dra. Larissa Sales" class="w-full h-full object-cover transition-all group-hover:scale-110" loading="lazy">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Larissa Sales</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Estética Dental (Lentes/Facetas)</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO BA 25602</p>
+                </div>
+
+                <!-- Especialista 3: Jessica -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/dra_jessica_montenegro/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/jessica.webp" alt="Dra. Jéssica Montenegro" class="w-full h-full object-cover transition-all group-hover:scale-110" loading="lazy">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Jéssica Montenegro</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">PhD em Estomatologia</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO 20712</p>
+                </div>
+
+                <!-- Especialista 4: Cristiane -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/dra.christianepadua/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/cristiane.webp" alt="Dra. Christiane Pádua" class="w-full h-full object-cover transition-all group-hover:scale-110" loading="lazy">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Christiane Pádua</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Harmonização Glútea/Corporal</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRM 20643</p>
+                </div>
+            
+                <!-- Especialista 5: Carina -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/carinadentista/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/carina.webp" alt="Dra. Carina Onias" class="w-full h-full object-cover transition-all group-hover:scale-110" loading="lazy">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Carina Onias</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Endodontia</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO BA 14194</p>
+                </div>
+
+                <!-- Especialista 6: Isabela -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/isabelaneme/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/isabela.webp" alt="Dra. Isabela Neme" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Isabela Neme</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Especialista em Endodontia</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO 16823</p>
+                </div>
+
+                <!-- Especialista 7: Sarah -->
+                <div class="text-center group">
+                    <a href="https://www.instagram.com/odonto.sarahquadros/" target="_blank" class="block">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border border-white/20 group-hover:border-brand-gold transition-colors">
+                            <img src="assets/img/team/sarah.webp" alt="Dra. Sarah Quadros" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        </div>
+                        <h4 class="font-bold text-white mb-1 group-hover:text-brand-gold transition-colors">Dra. Sarah Quadros</h4>
+                    </a>
+                    <p class="text-xs text-brand-gold mb-1">Especialista em Periodontia</p>
+                    <p class="text-[10px] text-white/50 uppercase">CRO 13331</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRATAMENTOS GERAIS LIST -->
+    <section id="clinico" class="py-24 bg-[#F5EDE4]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gsap-fade-up">
+                <div>
+                    <h2 class="font-serif text-4xl font-bold text-brand-dark mb-4">Estrutura Completa</h2>
+                    <p class="text-brand-muted max-w-xl">Na OBE, você encontra todas as especialidades odontológicas em um só lugar, com equipamentos de ponta e infraestrutura pensada no seu conforto.</p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="btn-gold px-6 py-3 rounded-full text-sm uppercase tracking-wider font-bold">Solicitar Orçamento</a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 gsap-fade-up" id="procedures-grid">
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Odontopediatria</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Cuidado lúdico e especializado para o sorriso dos pequenos e pacientes neurodivergentes (TEA).</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Ortodontia</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Alinhamento preciso com aparelhos tradicionais, estéticos e alinhadores invisíveis de última geração.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Harmonização Facial e Corporal</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Harmonização glútea, preenchimentos e bioestimuladores para realçar sua beleza natural.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Estomatologia</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Diagnóstico e tratamento de lesões bucais com suporte de PhD especializado na área.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Implantodontia</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Reabilitação oral completa com implantes seguros para devolver função e estética.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Periodontia</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Tratamento especializado das gengivas e tecidos de suporte para a saúde a longo prazo.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Próteses Odontológicas</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Soluções personalizadas em cerâmica e resina para reconstruir a harmonia do seu sorriso.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">ATM</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Tratamento de disfunções temporomandibulares, aliviando dores e tensões faciais.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-sm border border-brand-gold/10 hover:border-brand-gold/40 transition-all hover:shadow-md procedure-card">
+                    <h4 class="font-bold text-brand-dark text-lg mb-3">Endodontia (canal)</h4>
+                    <p class="text-sm text-brand-muted leading-relaxed">Tratamentos de canal indolores e rápidos com tecnologia rotatória de alta precisão.</p>
+                </div>
+            </div>
+
+            <!-- Botão Expandir (Mobile Only) -->
+            <div class="mt-8 flex justify-center md:hidden">
+                <button id="expand-procedures" class="px-8 py-3 rounded-full border border-brand-gold text-brand-gold font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                    Ver todos os procedimentos
+                    <i class="ph ph-caret-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION & FOOTER -->
+    <footer class="bg-white pt-24 pb-10 border-t border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 mb-16">
+                <!-- Infos -->
+                <div>
+                    <h2 class="font-serif text-3xl font-bold text-brand-dark mb-6">Visite a OBE</h2>
+                    <p class="text-brand-muted mb-8 max-w-md">Localizada no coração do Itaigara, com estacionamento fácil e ambiente projetado para sua tranquilidade.</p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <i class="ph-fill ph-map-pin text-2xl text-brand-gold"></i>
+                            <div>
+                                <p class="font-bold text-brand-dark">Endereço</p>
+                                <p class="text-brand-muted text-sm mt-1">Av. Antônio Carlos Magalhães, 846<br>Itaigara, Salvador - BA, 41825-000<br>Edf. Max Center - Sala 242</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="ph-fill ph-clock text-2xl text-brand-gold"></i>
+                            <div>
+                                <p class="font-bold text-brand-dark">Horário de Funcionamento</p>
+                                <p class="text-brand-muted text-sm mt-1">Segunda a Sexta: 08:30 às 18:30<br>Sábados e Domingos: Fechado</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="ph-fill ph-envelope-simple text-2xl text-brand-gold"></i>
+                            <div>
+                                <p class="font-bold text-brand-dark">Contato</p>
+                                <p class="text-brand-muted text-sm mt-1">obeodontologiabasica@gmail.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Map -->
+                <div class="h-[400px] rounded-3xl overflow-hidden shadow-lg border border-brand-gold/20 relative group">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.893046045148!2d-38.4679537!3d-12.9964347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161bc262c752bb%3A0xb50ebc46fdc34abe!2sOBE%20Odontologia%20B%C3%A1sica%20e%20Especializada!5e0!3m2!1spt-BR!2sbr!4v1713800000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="transition-all duration-500"></iframe>
+                    
+                    <a href="https://g.co/kgs/y15XBWn" target="_blank" class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl flex items-center justify-between shadow-xl hover:bg-white transition-colors">
+                        <span class="font-bold text-brand-dark text-sm">Abrir no Google Maps</span>
+                        <div class="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center text-white">
+                            <i class="ph-bold ph-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-brand-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="ph ph-tooth text-2xl text-brand-gold"></i>
+                    <span class="font-serif font-bold text-brand-dark">OBE Odontologia</span>
+                </div>
+                <p class="text-sm text-brand-muted">© 2026 OBE Odontologia. Todos os direitos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/obe.odontologia" target="_blank" class="w-10 h-10 rounded-full bg-[#F5EDE4] flex items-center justify-center text-brand-dark hover:bg-brand-gold hover:text-white transition-colors">
+                        <i class="ph-fill ph-instagram-logo text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/message/PMRYCVEM2PHOO1" target="_blank" class="float-wpp" aria-label="WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <!-- Scripts de Animação GSAP -->
+    <script>
+        // Otimização de performance: iniciar o mais rápido possível
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pequeno delay para garantir que o navegador processou o layout inicial
+            setTimeout(() => {
+                gsap.to('#preloader', {
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        document.getElementById('preloader').style.display = 'none';
+                        // Force reveal for hero masks immediately
+                        document.querySelectorAll('.gsap-hero-text .mask-text').forEach(el => el.classList.add('revealed'));
+                        initAnimations();
+                    }
+                });
+            }, 300);
+        });
+
+
+        // 💎 Luxury Design System Logic
+        
+        // 1. Progress Widget Logic
+        const circle = document.getElementById('progress-circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+
+        function setProgress(percent) {
+            const offset = circumference - (percent / 100 * circumference);
+            circle.style.strokeDashoffset = offset;
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const widget = document.getElementById('scroll-progress');
+            
+            if (window.scrollY > 300) {
+                widget.classList.add('visible');
+            } else {
+                widget.classList.remove('visible');
+            }
+            
+            setProgress(scrollPercent);
+        });
+
+        // 2. Masked Reveal Observer
+        const maskObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.mask-text').forEach(el => maskObserver.observe(el));
+
+        // Scroll Spy
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // Scroll Spy logic for active link
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // offset for fixed header
+                const sectionHeight = section.offsetHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Animations
+            gsap.to('.gsap-hero-text > *', 
+                { opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out' }
+            );
+
+            gsap.fromTo('.gsap-hero-img',
+                { x: 50, opacity: 0 },
+                { x: 0, opacity: 1, duration: 1.2, delay: 0.3, ease: 'power3.out' }
+            );
+
+            // Fade Up Elements with Skew/Rotate
+            gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+                gsap.fromTo(element,
+                    { y: 60, opacity: 0, skewY: 2, rotation: 1 },
+                    {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 92%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 0,
+                        opacity: 1,
+                        skewY: 0,
+                        rotation: 0,
+                        duration: 1.2,
+                        ease: 'expo.out',
+                        force3D: true
+                    }
+                );
+            });
+
+            // Slide Right
+            gsap.utils.toArray('.gsap-slide-right').forEach(element => {
+                gsap.fromTo(element,
+                    { x: -40, opacity: 0 },
+                    {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 90%',
+                        },
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        force3D: true
+                    }
+                );
+            });
+
+            // Slide Left
+            gsap.utils.toArray('.gsap-slide-left').forEach(element => {
+                gsap.fromTo(element,
+                    { x: 40, opacity: 0 },
+                    {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 90%',
+                        },
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        force3D: true
+                    }
+                );
+            });
+
+            // Menu Mobile Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+
+            const closeMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+            };
+
+            menuClose.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            // Expandir Procedimentos Mobile
+            const expandBtn = document.getElementById('expand-procedures');
+            const procedureCards = document.querySelectorAll('.procedure-card');
+
+            expandBtn.addEventListener('click', () => {
+                procedureCards.forEach(card => card.classList.add('show-all'));
+                expandBtn.parentElement.style.display = 'none';
+            });
+
+
+        }
+
+        // Review Carousel Logic
+        let currentReview = 0;
+        const totalReviews = 14;
+        const track = document.getElementById('reviews-track');
+        const counter = document.getElementById('review-current');
+        
+        function moveReview(dir) {
+            currentReview += dir;
+            
+            if (currentReview < 0) currentReview = 0;
+            if (currentReview >= totalReviews) currentReview = totalReviews - 1;
+            
+            const isMobile = window.innerWidth < 768;
+            const multiplier = isMobile ? 100 : (100 / 3);
+            track.style.transform = `translateX(-${currentReview * multiplier}%)`;
+            counter.innerText = currentReview + 1;
+        }
+
+        window.addEventListener('resize', () => {
+            currentReview = 0;
+            track.style.transform = `translateX(0%)`;
+            counter.innerText = 1;
+        });
+    </script>
+</body>
+</html>
