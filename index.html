@@ -130,17 +130,34 @@
             }
         }
         
-        /* Fixed Navbar */
-        .glass-nav {
-            background-color: #F5EDE4;
+        /* Dynamic Navbar */
+        #navbar {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(196, 162, 101, 0);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #navbar.scrolled {
+            background-color: rgba(245, 237, 228, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(196, 162, 101, 0.15);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 25px rgba(42, 37, 34, 0.08);
         }
         .nav-inner {
+            height: 100px;
+            transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #navbar.scrolled .nav-inner {
             height: 80px;
         }
-        @media (min-width: 768px) {
-            .nav-inner { height: 100px; }
+        @media (max-width: 768px) {
+            .nav-inner { 
+                height: 80px; 
+            }
+            #navbar.scrolled .nav-inner { 
+                height: 65px; 
+            }
         }
 
         /* Nav Link Active State */
@@ -464,7 +481,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-[100] glass-nav" id="navbar">
+    <nav class="fixed top-0 left-0 w-full z-[100]" id="navbar">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center nav-inner">
                 <!-- Logo -->
@@ -1568,10 +1585,19 @@
         }
 
         window.addEventListener('scroll', () => {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const scrollY = window.scrollY;
+            const scrollPercent = (scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             const widget = document.getElementById('scroll-progress');
+            const nav = document.getElementById('navbar');
             
-            if (window.scrollY > 300) {
+            // Navbar Scrolled State
+            if (scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (scrollY > 300) {
                 widget.classList.add('visible');
             } else {
                 widget.classList.remove('visible');
