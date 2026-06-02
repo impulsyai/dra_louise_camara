@@ -1673,7 +1673,6 @@
             }
         ];
 
-        // 💎 RENDERING & FILTERING LOGIC
         function renderProcedures(category = 'all') {
             const container = document.getElementById('procedures-container-grid');
             if (!container) return;
@@ -1683,9 +1682,39 @@
                 ? PROCEDURES_DATA 
                 : PROCEDURES_DATA.filter(p => p.category === category);
                 
-            filtered.forEach(p => {
+            filtered.forEach((p, idx) => {
                 const card = document.createElement('div');
-                card.className = "group block bg-white rounded-3xl p-6 md:p-8 border border-brand-gold/10 hover:border-brand-gold/40 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between procedure-card shimmer-card";
+                
+                // Determina a cor do fundo e da borda com base na aba ativa ou na sequência do índice
+                let cardBgClass = '';
+                let cardBorderClass = '';
+                
+                if (category === 'all') {
+                    const colorIndex = idx % 3;
+                    if (colorIndex === 0) {
+                        cardBgClass = 'bg-[#FDF6F5]'; // Rosa padrão da página
+                        cardBorderClass = 'border-brand-rose/20 hover:border-brand-rose/40';
+                    } else if (colorIndex === 1) {
+                        cardBgClass = 'bg-white'; // Branco
+                        cardBorderClass = 'border-brand-gold/15 hover:border-brand-gold/40';
+                    } else {
+                        cardBgClass = 'bg-[#F5EDE4]'; // Bege igual à navbar (body)
+                        cardBorderClass = 'border-[#E8DFD5] hover:border-brand-gold/30';
+                    }
+                } else {
+                    if (p.category === 'kids') {
+                        cardBgClass = 'bg-[#FDF6F5]';
+                        cardBorderClass = 'border-brand-rose/20 hover:border-brand-rose/40';
+                    } else if (p.category === 'aesthetic') {
+                        cardBgClass = 'bg-white';
+                        cardBorderClass = 'border-brand-gold/15 hover:border-brand-gold/40';
+                    } else { // clinical
+                        cardBgClass = 'bg-[#F5EDE4]';
+                        cardBorderClass = 'border-[#E8DFD5] hover:border-brand-gold/30';
+                    }
+                }
+
+                card.className = `group block ${cardBgClass} rounded-3xl p-6 md:p-8 border ${cardBorderClass} hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between procedure-card shimmer-card`;
                 card.setAttribute('onclick', `openProcedureModal('${p.id}')`);
                 
                 const iconColorClass = p.category === 'aesthetic' ? 'text-brand-gold' : 'text-brand-rose';
