@@ -808,7 +808,7 @@
                 <!-- Caso 1: Harmonização -->
                 <div class="portfolio-card group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card cursor-pointer">
                     <div class="relative aspect-square rounded-2xl overflow-hidden mb-6 gallery-rotator">
-                        <img src="assets/img/harmonizacao-1.jpg" alt="Antes e Depois Harmonização Facial 1" class="gallery-img w-full h-full object-cover object-left filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-100" loading="lazy">
+                        <img src="assets/img/harmonizacao-1.jpg" alt="Antes e Depois Harmonização Facial 1" class="gallery-img w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-100" loading="lazy">
                         <img src="assets/img/harmonizacao-2.jpg" alt="Antes e Depois Harmonização Facial 2" class="gallery-img absolute inset-0 w-full h-full object-cover object-left filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
                         <div class="absolute top-3 left-3 z-10">
                             <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-white">Antes</span>
@@ -893,12 +893,14 @@
 
                 <!-- Caso 6: Sorriso Gengival -->
                 <div class="portfolio-card group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card cursor-pointer hidden">
-                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-6">
-                        <img src="assets/img/sorriso-gengival.jpg" alt="Antes e Depois Sorriso Gengival" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
-                        <div class="absolute top-3 left-3">
+                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-6 gallery-rotator">
+                        <img src="assets/img/sorriso-gengival.jpg" alt="Antes e Depois Sorriso Gengival 1" class="gallery-img w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-100" loading="lazy">
+                        <img src="assets/img/gengiva-1.jpg" alt="Antes e Depois Sorriso Gengival 2" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
+                        <img src="assets/img/gengiva-2.jpg" alt="Antes e Depois Sorriso Gengival 3" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
+                        <div class="absolute top-3 left-3 z-10">
                             <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-white">Antes</span>
                         </div>
-                        <div class="absolute bottom-3 right-3">
+                        <div class="absolute bottom-3 right-3 z-10">
                             <span class="bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark text-[9px] font-bold uppercase tracking-wider">Depois</span>
                         </div>
                     </div>
@@ -911,8 +913,9 @@
 
             <!-- Botão Expandir Resultados (Desktop e Mobile) -->
             <div class="flex justify-center mt-12" id="portfolio-expand-btn-container">
-                <button id="expand-portfolio" class="px-8 py-3.5 rounded-full border border-brand-gold text-brand-gold font-bold text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all shadow-md">
+                <button id="expand-portfolio" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-brand-gold text-brand-gold font-bold text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all shadow-md group">
                     Ver Mais Resultados
+                    <i class="ph ph-caret-down text-lg animate-bounce transition-transform duration-300 group-hover:translate-y-1"></i>
                 </button>
             </div>
 
@@ -2252,33 +2255,45 @@
             const modalTitle = document.getElementById('modal-portfolio-title');
             const modalDesc = document.getElementById('modal-portfolio-desc');
             const closeModalBtn = document.getElementById('close-portfolio-modal');
+            const prevModalBtn = document.getElementById('prev-portfolio-modal');
+            const nextModalBtn = document.getElementById('next-portfolio-modal');
 
             if (portfolioModal) {
-                const portfolioCards = document.querySelectorAll('.portfolio-card');
-                portfolioCards.forEach(card => {
+                const portfolioCards = Array.from(document.querySelectorAll('.portfolio-card'));
+                let currentModalIndex = 0;
+
+                const updateModalContent = (index) => {
+                    currentModalIndex = index;
+                    const card = portfolioCards[index];
+                    if (!card) return;
+
+                    const img = card.querySelector('img.opacity-100') || card.querySelector('img');
+                    const title = card.querySelector('h4');
+                    const desc = card.querySelector('p');
+
+                    if (img && title && desc) {
+                        modalImg.src = img.src;
+                        modalImg.alt = img.alt;
+                        modalTitle.textContent = title.textContent;
+                        modalDesc.textContent = desc.textContent;
+                    }
+                };
+
+                portfolioCards.forEach((card, index) => {
                     card.addEventListener('click', () => {
-                        const img = card.querySelector('img.opacity-100') || card.querySelector('img');
-                        const title = card.querySelector('h4');
-                        const desc = card.querySelector('p');
+                        updateModalContent(index);
 
-                        if (img && title && desc) {
-                            modalImg.src = img.src;
-                            modalImg.alt = img.alt;
-                            modalTitle.textContent = title.textContent;
-                            modalDesc.textContent = desc.textContent;
-
-                            // Abrir modal
-                            portfolioModal.classList.remove('hidden');
-                            setTimeout(() => {
-                                portfolioModal.classList.remove('opacity-0');
-                                portfolioModal.classList.add('opacity-100');
-                                const container = portfolioModal.querySelector('.max-w-4xl');
-                                if (container) {
-                                    container.classList.remove('scale-95');
-                                    container.classList.add('scale-100');
-                                }
-                            }, 10);
-                        }
+                        // Abrir modal
+                        portfolioModal.classList.remove('hidden');
+                        setTimeout(() => {
+                            portfolioModal.classList.remove('opacity-0');
+                            portfolioModal.classList.add('opacity-100');
+                            const container = portfolioModal.querySelector('.max-w-4xl');
+                            if (container) {
+                                container.classList.remove('scale-95');
+                                container.classList.add('scale-100');
+                            }
+                        }, 10);
                     });
                 });
 
@@ -2295,7 +2310,20 @@
                     }, 300);
                 };
 
+                const showNext = () => {
+                    const nextIndex = (currentModalIndex + 1) % portfolioCards.length;
+                    updateModalContent(nextIndex);
+                };
+
+                const showPrev = () => {
+                    const prevIndex = (currentModalIndex - 1 + portfolioCards.length) % portfolioCards.length;
+                    updateModalContent(prevIndex);
+                };
+
                 closeModalBtn.addEventListener('click', closeModal);
+                if (prevModalBtn) prevModalBtn.addEventListener('click', showPrev);
+                if (nextModalBtn) nextModalBtn.addEventListener('click', showNext);
+
                 portfolioModal.addEventListener('click', (e) => {
                     if (e.target === portfolioModal) {
                         closeModal();
@@ -2303,8 +2331,10 @@
                 });
 
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && !portfolioModal.classList.contains('hidden')) {
-                        closeModal();
+                    if (!portfolioModal.classList.contains('hidden')) {
+                        if (e.key === 'Escape') closeModal();
+                        if (e.key === 'ArrowRight') showNext();
+                        if (e.key === 'ArrowLeft') showPrev();
                     }
                 });
             }
@@ -2338,11 +2368,21 @@
     <!-- Modal de Visualização de Antes e Depois (Premium) -->
     <div id="portfolio-modal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md transition-all duration-300 opacity-0">
         <!-- Botão Fechar -->
-        <button id="close-portfolio-modal" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors p-2 text-4xl focus:outline-none" aria-label="Fechar">
+        <button id="close-portfolio-modal" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors p-2 text-4xl focus:outline-none z-20" aria-label="Fechar">
             <i class="ph ph-x"></i>
         </button>
+        
+        <!-- Botão Anterior -->
+        <button id="prev-portfolio-modal" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-3 text-4xl md:text-5xl focus:outline-none z-20" aria-label="Anterior">
+            <i class="ph ph-caret-left"></i>
+        </button>
+        <!-- Botão Próximo -->
+        <button id="next-portfolio-modal" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-3 text-4xl md:text-5xl focus:outline-none z-20" aria-label="Próximo">
+            <i class="ph ph-caret-right"></i>
+        </button>
+
         <!-- Container do Conteúdo -->
-        <div class="bg-[#1C1816] border border-white/10 rounded-[32px] overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl transition-all duration-300 scale-95">
+        <div class="bg-[#1C1816] border border-white/10 rounded-[32px] overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl transition-all duration-300 scale-95 relative z-10">
             <!-- Imagem -->
             <div class="md:w-3/5 bg-black flex items-center justify-center overflow-hidden max-h-[50vh] md:max-h-none">
                 <img id="modal-portfolio-img" src="" alt="" class="w-full h-full object-contain max-h-[50vh] md:max-h-[80vh]">
