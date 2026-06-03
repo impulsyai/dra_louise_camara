@@ -807,12 +807,13 @@
             <div class="grid md:grid-cols-3 gap-8" id="portfolio-grid">
                 <!-- Caso 1: Harmonização -->
                 <div class="portfolio-card group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card cursor-pointer">
-                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-6">
-                        <img src="assets/img/harmoniza-o.jpg" alt="Antes e Depois Harmonização Facial" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-500" loading="lazy">
-                        <div class="absolute top-3 left-3">
+                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-6 gallery-rotator">
+                        <img src="assets/img/harmonizacao-1.jpg" alt="Antes e Depois Harmonização Facial 1" class="gallery-img w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-100" loading="lazy">
+                        <img src="assets/img/harmonizacao-2.jpg" alt="Antes e Depois Harmonização Facial 2" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
+                        <div class="absolute top-3 left-3 z-10">
                             <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-white">Antes</span>
                         </div>
-                        <div class="absolute bottom-3 right-3">
+                        <div class="absolute bottom-3 right-3 z-10">
                             <span class="bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark text-[9px] font-bold uppercase tracking-wider">Depois</span>
                         </div>
                     </div>
@@ -2256,7 +2257,7 @@
                 const portfolioCards = document.querySelectorAll('.portfolio-card');
                 portfolioCards.forEach(card => {
                     card.addEventListener('click', () => {
-                        const img = card.querySelector('img');
+                        const img = card.querySelector('img.opacity-100') || card.querySelector('img');
                         const title = card.querySelector('h4');
                         const desc = card.querySelector('p');
 
