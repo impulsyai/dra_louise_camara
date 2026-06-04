@@ -1476,10 +1476,33 @@
             <!-- Bento Grid Gallery -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-auto md:h-[900px]">
                 <!-- Large Vertical Item -->
-                <div class="md:col-span-4 md:row-span-2 group relative overflow-hidden rounded-[40px] shadow-lg cursor-pointer gallery-rotator" onclick="openGalleryModal(this.querySelector('.gallery-img.opacity-100').src)">
-                    <img src="assets/img/clinica/clinica-1.jpg" alt="Ambiente OBE" class="gallery-img w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-100">
-                    <img src="assets/img/clinica/clinica-10.png" alt="Recepção OBE" class="gallery-img absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-0">
-                    <div class="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <!-- Card Vídeo Timelapse Sedação -->
+                <div class="md:col-span-4 md:row-span-2 group relative overflow-hidden rounded-[40px] shadow-lg cursor-pointer" id="video-gallery-card" onclick="openSedacaoModal()">
+                    <video
+                        id="gallery-video-sedacao"
+                        src="assets/video/sedacao.mp4"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        autoplay muted loop playsinline
+                        preload="auto"
+                    ></video>
+                    <!-- Overlay escuro sutil -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-transparent to-transparent z-10"></div>
+                    <!-- Badge "Timelapse" -->
+                    <div class="absolute top-5 left-5 z-20 flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        <span class="text-white text-[10px] font-bold uppercase tracking-widest">Timelapse</span>
+                    </div>
+                    <!-- Info no rodapé -->
+                    <div class="absolute bottom-0 left-0 right-0 z-20 p-6">
+                        <p class="text-white/60 text-[10px] uppercase tracking-widest font-bold mb-1">Procedimento</p>
+                        <h3 class="text-white font-serif text-xl font-bold leading-tight mb-2">Sedação Consciente</h3>
+                        <div class="flex items-center gap-2 text-brand-gold">
+                            <i class="ph-fill ph-play-circle text-lg"></i>
+                            <span class="text-[11px] font-bold uppercase tracking-widest">Ver detalhes</span>
+                        </div>
+                    </div>
+                    <!-- Hover ring -->
+                    <div class="absolute inset-0 rounded-[40px] ring-0 group-hover:ring-4 ring-brand-gold/40 transition-all duration-500 z-30 pointer-events-none"></div>
                 </div>
                 
                 <!-- Top Medium Item -->
@@ -1514,6 +1537,54 @@
                     <img src="assets/img/clinica/clinica-7.jpg" alt="Detalhes Clínica" class="gallery-img w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-100">
                     <img src="assets/img/clinica/clinica-9.jpg" alt="Playroom Clínica" class="gallery-img absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-0">
                     <div class="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                </div>
+            </div>
+
+            <!-- Modal Sedação Consciente -->
+            <div id="sedacao-modal" class="fixed inset-0 z-[999] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" style="background: rgba(15,10,5,0.85); backdrop-filter: blur(8px);">
+                <div class="relative bg-white rounded-[32px] max-w-2xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="sedacao-modal-box">
+                    <!-- Vídeo no topo do modal -->
+                    <div class="relative h-64 bg-brand-dark overflow-hidden">
+                        <video src="assets/video/sedacao.mp4" class="w-full h-full object-cover" autoplay muted loop playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark/60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            <span class="text-white text-[10px] font-bold uppercase tracking-widest">Timelapse Real — Sedação Consciente</span>
+                        </div>
+                        <!-- Botão fechar -->
+                        <button onclick="closeSedacaoModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all" aria-label="Fechar">
+                            <i class="ph ph-x text-xl"></i>
+                        </button>
+                    </div>
+                    <!-- Conteúdo informativo -->
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-[#F5EDE4] flex items-center justify-center text-brand-gold">
+                                <i class="ph-fill ph-shield-check text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-brand-gold font-bold text-[10px] uppercase tracking-widest">Procedimento Seguro</p>
+                                <h3 class="font-serif text-2xl font-bold text-brand-dark">Sedação Consciente</h3>
+                            </div>
+                        </div>
+                        <p class="text-brand-muted leading-relaxed mb-6">A <strong>sedação com Óxido Nitroso</strong> é um método seguro e inalatório que reduz ansiedade e medo, deixando o paciente <strong>relaxado, acordado e colaborativo</strong> durante todo o tratamento.</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-[#F5EDE4] rounded-2xl p-4">
+                                <i class="ph-fill ph-smiley text-2xl text-brand-gold mb-2"></i>
+                                <h4 class="font-bold text-brand-dark text-sm mb-1">Indicado para</h4>
+                                <p class="text-brand-muted text-xs">Crianças ansiosas, pacientes PCD/TEA e adultos com fobia de dentista.</p>
+                            </div>
+                            <div class="bg-[#F5EDE4] rounded-2xl p-4">
+                                <i class="ph-fill ph-clock text-2xl text-brand-gold mb-2"></i>
+                                <h4 class="font-bold text-brand-dark text-sm mb-1">Recuperação</h4>
+                                <p class="text-brand-muted text-xs">Rápida. O efeito cessa minutos após o término, sem sonolência.</p>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/557196593529?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20tenho%20interesse%20na%20seda%C3%A7%C3%A3o%20consciente.%20Pode%20me%20ajudar%3F" target="_blank" class="btn-gold w-full py-4 rounded-2xl text-center uppercase tracking-wider font-bold flex items-center justify-center gap-2">
+                            <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                            Saiba mais pelo WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -2017,6 +2088,46 @@
                 document.body.style.overflow = '';
             }, 300);
         }
+
+        // 🎬 SEDACAO VIDEO MODAL LOGIC
+        function openSedacaoModal() {
+            const modal = document.getElementById('sedacao-modal');
+            const box = document.getElementById('sedacao-modal-box');
+            if (!modal || !box) return;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            setTimeout(() => {
+                box.classList.remove('scale-95');
+                box.classList.add('scale-100');
+            }, 50);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSedacaoModal() {
+            const modal = document.getElementById('sedacao-modal');
+            const box = document.getElementById('sedacao-modal-box');
+            if (!modal || !box) return;
+
+            box.classList.remove('scale-100');
+            box.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Fechar modal sedacao ao clicar no backdrop
+        document.addEventListener('DOMContentLoaded', function() {
+            const sedacaoModal = document.getElementById('sedacao-modal');
+            if (sedacaoModal) {
+                sedacaoModal.addEventListener('click', function(e) {
+                    if (e.target === sedacaoModal) closeSedacaoModal();
+                });
+            }
+        });
 
         // 💎 FAQ ACCORDION LOGIC
         function toggleFaq(id) {
