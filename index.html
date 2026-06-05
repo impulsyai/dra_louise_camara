@@ -1581,8 +1581,8 @@
 
                 <!-- Top Right Item -->
                 <div class="md:col-span-3 md:row-span-1 group relative overflow-hidden rounded-[40px] shadow-lg cursor-pointer gallery-rotator" onclick="openGalleryModal(this.querySelector('.gallery-img.opacity-100').src)">
-                    <img src="assets/img/clinica/clinica-3.jpg" alt="Sala de Atendimento" class="gallery-img w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-100">
-                    <img src="assets/img/clinica/galeria-1.jpg" alt="Sala de Atendimento" class="gallery-img absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-0">
+                    <img src="assets/img/clinica/galeria-1.jpg" alt="Sala de Atendimento" class="gallery-img w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-100">
+                    <img src="assets/img/clinica/clinica-3.jpg" alt="Sala de Atendimento" class="gallery-img absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out scale-100 group-hover:scale-110 opacity-0">
                     <div class="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                     <!-- Indicadores de Slideshow (Bolinhas) -->
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 bg-black/40 px-2.5 py-1 rounded-full backdrop-blur-sm">
@@ -2153,8 +2153,8 @@
         const GALLERY_IMAGES = [
             'assets/img/clinica/clinica-2.jpg',
             'assets/img/clinica/clinica-8.jpg',
-            'assets/img/clinica/clinica-3.jpg',
             'assets/img/clinica/galeria-1.jpg',
+            'assets/img/clinica/clinica-3.jpg',
             'assets/img/clinica/clinica-5.jpg',
             'assets/img/clinica/clinica-4.jpg',
             'assets/img/clinica/galeria-2.jpg',
@@ -2325,7 +2325,7 @@
                 };
                 
                 // Define delays alternados (stagger) para não mudarem todas ao mesmo tempo
-                const delay = 4000 + (index * 2000);
+                const delay = 1000 + (index * 600);
                 setTimeout(() => {
                     setInterval(rotate, 6000);
                 }, delay);
