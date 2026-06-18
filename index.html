@@ -1038,6 +1038,35 @@
                         <p class="text-sm text-brand-muted">Transformação com naturalidade e harmonia.</p>
                     </div>
                 </div>
+
+                <!-- Caso 8: Transformações de Sorriso -->
+                <div class="portfolio-card group bg-white rounded-[32px] p-4 shadow-sm border border-brand-gold/10 hover:shadow-xl hover:border-brand-gold/30 transition-shadow transition-colors shimmer-card cursor-pointer hidden md:block">
+                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-6 gallery-rotator">
+                        <img src="assets/img/caso-8-1.jpg" alt="Transformação de Sorriso 1" class="gallery-img w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-100" loading="lazy">
+                        <img src="assets/img/caso-8-2.jpg" alt="Transformação de Sorriso 2" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
+                        <img src="assets/img/caso-8-3.jpg" alt="Transformação de Sorriso 3" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy">
+                        <img src="assets/img/caso-8-4.jpg" alt="Resultado Lentes Dentárias" class="gallery-img absolute inset-0 w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition-all duration-1000 opacity-0" loading="lazy" data-only-resultado="true">
+                        
+                        <!-- Indicadores de Slideshow (Bolinhas) -->
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10 bg-black/45 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                            <span class="dot-indicator w-3 h-1.5 rounded-full bg-white transition-all duration-300"></span>
+                            <span class="dot-indicator w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300"></span>
+                            <span class="dot-indicator w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300"></span>
+                            <span class="dot-indicator w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300"></span>
+                        </div>
+
+                        <div class="absolute top-3 left-3 z-10 antes-badge">
+                            <span class="bg-black/40 px-3 py-1 rounded-full backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-white">Antes</span>
+                        </div>
+                        <div class="absolute bottom-3 right-3 z-10">
+                            <span class="depois-badge bg-brand-gold px-3 py-1 rounded-full shadow-md text-brand-dark text-[9px] font-bold uppercase tracking-wider">Depois</span>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <h4 class="font-bold text-brand-dark text-lg mb-1">Transformações de Sorriso</h4>
+                        <p class="text-sm text-brand-muted">Lentes de contato e facetas de alta performance.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Botão Expandir Resultados (Apenas Mobile) -->
@@ -2439,12 +2468,26 @@
                     
                     activeIndex = (activeIndex + 1) % imgs.length;
                     
-                    imgs[activeIndex].classList.remove('opacity-0');
-                    imgs[activeIndex].classList.add('opacity-100');
+                    const nextImg = imgs[activeIndex];
+                    nextImg.classList.remove('opacity-0');
+                    nextImg.classList.add('opacity-100');
                     
                     if (dots.length > 0) {
                         dots[activeIndex].classList.remove('bg-white/50', 'w-1.5');
                         dots[activeIndex].classList.add('bg-white', 'w-3');
+                    }
+
+                    // Atualiza dinamicamente as etiquetas de Antes/Depois ou Resultado
+                    const antesBadge = rotator.querySelector('.antes-badge');
+                    const depoisBadge = rotator.querySelector('.depois-badge');
+                    if (antesBadge && depoisBadge) {
+                        if (nextImg.getAttribute('data-only-resultado') === 'true') {
+                            antesBadge.style.display = 'none';
+                            depoisBadge.innerText = 'Resultado';
+                        } else {
+                            antesBadge.style.display = 'block';
+                            depoisBadge.innerText = 'Depois';
+                        }
                     }
                 };
                 
