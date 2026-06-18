@@ -31,7 +31,7 @@ const CLIENT_CONFIG = {
         },
         {
             name: "Dra. Camila Magalhães",
-            role: "Odontopediatria, Ortodontia Infantil e PCD (foco autismo)",
+            role: "Odontopediatria, Ortodontia Infantil, Laser em lesões infantis, Frenectomia em bebês e PCD (foco autismo)",
             cro: "CRO BA 9608",
             instagram: "@dramilamagalhaes"
         }
