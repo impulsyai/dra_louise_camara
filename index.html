@@ -1063,8 +1063,8 @@
                         </div>
                     </div>
                     <div class="px-2 pb-2">
-                        <h4 class="font-bold text-brand-dark text-lg mb-1">Transformações de Sorriso</h4>
-                        <p class="text-sm text-brand-muted">Lentes de contato e facetas de alta performance.</p>
+                        <h4 class="font-bold text-brand-dark text-lg mb-1">Lentes de Contato Dentárias</h4>
+                        <p class="text-sm text-brand-muted">Sorrisos esculpidos com facetas e lentes de porcelana personalizadas.</p>
                     </div>
                 </div>
             </div>
@@ -2710,6 +2710,8 @@
             if (portfolioModal) {
                 const portfolioCards = Array.from(document.querySelectorAll('.portfolio-card'));
                 let currentModalIndex = 0;
+                let activeCardImages = [];
+                let currentCardImageIndex = 0;
 
                 const updateModalContent = (index) => {
                     currentModalIndex = index;
@@ -2742,6 +2744,11 @@
                         
                         if (splitAntes) splitAntes.src = antesSrc;
                         if (splitDepois) splitDepois.src = depoisSrc;
+
+                        activeCardImages = [];
+                        currentCardImageIndex = 0;
+                        if (prevModalBtn) prevModalBtn.classList.add('hidden');
+                        if (nextModalBtn) nextModalBtn.classList.add('hidden');
                     } else {
                         if (splitContainer) {
                             splitContainer.classList.add('hidden');
@@ -2749,10 +2756,32 @@
                         }
                         if (mainImg) mainImg.classList.remove('hidden');
                         
-                        const img = card.querySelector('img.opacity-100') || card.querySelector('img');
-                        if (img && mainImg) {
-                            mainImg.src = img.src;
-                            mainImg.alt = img.alt;
+                        // Extrair imagens deste card específico
+                        const galleryImgs = Array.from(card.querySelectorAll('.gallery-img'));
+                        if (galleryImgs.length > 0) {
+                            activeCardImages = galleryImgs.map(img => img.src);
+                            const activeImg = card.querySelector('.gallery-img.opacity-100') || galleryImgs[0];
+                            currentCardImageIndex = galleryImgs.indexOf(activeImg);
+                            if (currentCardImageIndex === -1) currentCardImageIndex = 0;
+                        } else {
+                            const singleImg = card.querySelector('img');
+                            activeCardImages = singleImg ? [singleImg.src] : [];
+                            currentCardImageIndex = 0;
+                        }
+
+                        if (mainImg && activeCardImages.length > 0) {
+                            mainImg.src = activeCardImages[currentCardImageIndex];
+                            const activeImgEl = galleryImgs[currentCardImageIndex] || card.querySelector('img');
+                            mainImg.alt = activeImgEl ? activeImgEl.alt : "";
+                        }
+
+                        // Toggle de visibilidade dos botões de navegação
+                        if (activeCardImages.length <= 1) {
+                            if (prevModalBtn) prevModalBtn.classList.add('hidden');
+                            if (nextModalBtn) nextModalBtn.classList.add('hidden');
+                        } else {
+                            if (prevModalBtn) prevModalBtn.classList.remove('hidden');
+                            if (nextModalBtn) nextModalBtn.classList.remove('hidden');
                         }
                     }
                 };
@@ -2789,13 +2818,23 @@
                 };
 
                 const showNext = () => {
-                    const nextIndex = (currentModalIndex + 1) % portfolioCards.length;
-                    updateModalContent(nextIndex);
+                    if (activeCardImages.length > 1) {
+                        currentCardImageIndex = (currentCardImageIndex + 1) % activeCardImages.length;
+                        const mainImg = document.getElementById('modal-portfolio-img');
+                        if (mainImg) {
+                            mainImg.src = activeCardImages[currentCardImageIndex];
+                        }
+                    }
                 };
 
                 const showPrev = () => {
-                    const prevIndex = (currentModalIndex - 1 + portfolioCards.length) % portfolioCards.length;
-                    updateModalContent(prevIndex);
+                    if (activeCardImages.length > 1) {
+                        currentCardImageIndex = (currentCardImageIndex - 1 + activeCardImages.length) % activeCardImages.length;
+                        const mainImg = document.getElementById('modal-portfolio-img');
+                        if (mainImg) {
+                            mainImg.src = activeCardImages[currentCardImageIndex];
+                        }
+                    }
                 };
 
                 closeModalBtn.addEventListener('click', closeModal);
